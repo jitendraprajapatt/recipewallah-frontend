@@ -1,4 +1,5 @@
-const API_BASE_URL = 'https://recipewallah-backend.onrender.com'
+const rawApiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'https://recipewallah-backend.onrender.com').trim()
+const API_BASE_URL = rawApiBaseUrl.replace(/\/+$/, '')
 const SESSION_STORAGE_KEY = 'recipewallah-admin-session'
 
 function buildUrl(pathname) {

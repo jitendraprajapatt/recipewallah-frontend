@@ -90,9 +90,9 @@ const fallbackRelease = {
   version: 'Upcoming release',
   releaseNotes: 'The RecipeWallah team will publish the next downloadable app build here.',
   platform: 'android',
-  directDownloadUrl: '',
-  playStoreUrl: '',
-  appStoreUrl: '',
+  directDownloadUrl: import.meta.env.VITE_FALLBACK_DIRECT_DOWNLOAD_URL ?? '',
+  playStoreUrl: import.meta.env.VITE_PLAY_STORE_URL ?? '',
+  appStoreUrl: import.meta.env.VITE_APP_STORE_URL ?? '',
   fileName: '',
   fileSize: 0,
   storagePath: '',
@@ -793,7 +793,7 @@ function App() {
 
   const adminAllowlist = useMemo(
     () =>
-      ('owner@recipewallah.com')
+      (import.meta.env.VITE_ADMIN_EMAILS ?? 'owner@recipewallah.com')
         .split(',')
         .map((email) => email.trim().toLowerCase())
         .filter(Boolean),
