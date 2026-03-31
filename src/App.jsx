@@ -14,21 +14,25 @@ import './App.css'
 
 const featureCards = [
   {
+    icon: '🔍',
     title: 'Adaptive Recipe Search',
     description:
       'Discover meal ideas by ingredients, cuisine, prep time, and dietary goals in one flow.',
   },
   {
+    icon: '💪',
     title: 'Workout Nutrition Companion',
     description:
       'Get AI-assisted meal suggestions for bulking, cutting, recovery, and balanced fitness routines.',
   },
   {
+    icon: '💊',
     title: 'Medicine Awareness Layer',
     description:
       'See medicine info with strong caution messaging that prompts users to verify with professionals.',
   },
   {
+    icon: '📍',
     title: 'Geo-aware Suggestions',
     description:
       'Improve relevance by city context while avoiding permanent location storage.',
@@ -166,10 +170,23 @@ function usePathname() {
   }, [])
 
   const navigate = useCallback((nextPath, hash = '') => {
+    // Hash-only scroll (no path change)
     if (!nextPath && hash) {
       if (window.location.hash !== hash) {
         window.history.pushState({}, '', window.location.pathname + hash)
       }
+      setTimeout(() => {
+        const element = document.querySelector(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 50)
+      return
+    }
+
+    // Same page with a hash: scroll without navigation
+    if (hash && nextPath === window.location.pathname) {
+      window.history.pushState({}, '', nextPath + hash)
       setTimeout(() => {
         const element = document.querySelector(hash)
         if (element) {
@@ -220,24 +237,151 @@ function PrivacyPolicyView({ navigate }) {
   return (
     <div className="page-shell privacy-shell">
       <div className="privacy-container reveal">
-        <h1 className="serif-title gradient-text">Privacy Policy</h1>
-        <p className="last-updated">Last Updated: March 2026</p>
+        <h1 className="serif-title gradient-text">Privacy Policy — RecipeWallah</h1>
+        <p className="last-updated">Last Updated: March 31, 2026 | Version 2.0 | https://recipewallah.netlify.app/privacy-policy</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem', color: '#10b981', fontWeight: '500' }}>
+          <span>✓</span>
+          <span>Google Play Data Safety Compliant</span>
+        </div>
         <hr className="divider" />
+        
         <section>
-          <h2>1. Introduction</h2>
-          <p>Welcome to RecipeWallah. This Privacy Policy outlines how we collect, use, and protect your information when you use our mobile application and website services.</p>
+          <h2>1. Who We Are</h2>
+          <p>RecipeWallah is an AI-powered recipe and fitness app developed and maintained by RecipeWallah. By using this app, you agree to this Privacy Policy.</p>
+          <p>Contact: <a href="mailto:support@recipewallah.com">support@recipewallah.com</a><br/>
+          Policy URL: <a href="https://recipewallah.netlify.app/privacy-policy">https://recipewallah.netlify.app/privacy-policy</a></p>
         </section>
+
         <section>
-          <h2>2. Location & Data Collection</h2>
-          <p>RecipeWallah may access your device's location to serve localized recipe suggestions. However, <strong>we do not save or persistently store your location data</strong> in our databases. Furthermore, <strong>we strictly do not share, sell, or disclose any of your data to third parties.</strong></p>
+          <h2>2. No Account Required</h2>
+          <p>RecipeWallah does not require any account, login, or registration. You use the app completely anonymously. We do not collect your name, email, phone number, or any identity-linked information.</p>
         </section>
+
         <section>
-          <h2>3. AI-Generated Content Liability</h2>
-          <p>All recipes, nutritional macronutrients, and dietary suggestions provided within RecipeWallah are entirely AI-generated. While we strive for quality, we cannot guarantee absolute accuracy. <strong>Using these suggestions is entirely the responsibility of the user.</strong> You must verify any ingredient safety, allergies, or dietary compliance prior to preparation and consumption.</p>
+          <h2>3. What Data We Collect & Why</h2>
+          <p>Here is a clear summary of every type of data involved:</p>
+          <div className="table-wrapper" style={{ overflowX: 'auto', marginBottom: '1rem' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
+                  <th style={{ padding: '0.75rem' }}>Data Type</th>
+                  <th style={{ padding: '0.75rem' }}>Why We Collect It</th>
+                  <th style={{ padding: '0.75rem' }}>Stored on Servers?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
+                  <td style={{ padding: '0.75rem' }}>Approximate Location</td>
+                  <td style={{ padding: '0.75rem' }}>Region-specific recipe suggestions</td>
+                  <td style={{ padding: '0.75rem' }}>No — processed locally only</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
+                  <td style={{ padding: '0.75rem' }}>Health & Fitness Inputs</td>
+                  <td style={{ padding: '0.75rem' }}>Generate AI nutrition/protein results</td>
+                  <td style={{ padding: '0.75rem' }}>No — never stored permanently</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: '0.75rem' }}>Anonymous Usage Stats</td>
+                  <td style={{ padding: '0.75rem' }}>Bug fixes & app improvement</td>
+                  <td style={{ padding: '0.75rem' }}>Yes — Firebase (anonymous)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3>Location</h3>
+          <p>We only use coarse (network-based) location — never your precise GPS. It is used solely to suggest region-specific recipes and is never sent to or stored on our servers.</p>
+          
+          <h3>Fitness & Nutrition Inputs</h3>
+          <p>Inputs to the Protein Calculator or Muscle Gain Goal tools are sent to an AI model only to generate your result. We do not save this data anywhere. Once your session ends, it is permanently gone.</p>
+          
+          <h3>Anonymous Analytics</h3>
+          <p>Google Firebase collects anonymous usage patterns and crash reports to help us improve the app. This data is never linked to your identity.</p>
         </section>
+
         <section>
-          <h2>4. Health and Medicine Disclaimer</h2>
-          <p>The "Medicine Awareness Layer" is provided strictly for informational purposes. As the app's content is AI-generated, you must always consult a certified medical professional before mixing any suggested foods with prescription medication or altering your diet for medical purposes.</p>
+          <h2>4. Data Retention</h2>
+          <p>We believe in keeping only what we need, for as long as we need it:</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Location data:</strong> Never stored — discarded immediately after use</li>
+            <li><strong>Fitness inputs:</strong> Never stored — session only</li>
+            <li><strong>Firebase analytics:</strong> Up to 14 months (Google's default)</li>
+            <li><strong>AdMob ad data:</strong> Per Google AdMob policy</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>5. AI-Generated Content — What You Should Know</h2>
+          <p>RecipeWallah uses Google Gemini and OpenAI to generate recipes, nutrition information, and fitness plans.</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>AI can make mistakes.</strong> Always double-check ingredient amounts, nutritional values, and cooking instructions before use.</li>
+            <li><strong>Not medical advice.</strong> Any health or nutritional information is for general educational purposes only — not a substitute for professional medical advice. Consult a doctor or dietitian before making significant dietary or fitness changes.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>6. Third-Party Services We Use</h2>
+          <p>These services operate under their own privacy policies:</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Google AdMob:</strong> Personalized ads (Advertising ID)</li>
+            <li><strong>Google Firebase:</strong> Analytics & crashes (Anonymous identifiers)</li>
+            <li><strong>Google Gemini:</strong> AI responses (Text inputs, not stored by us)</li>
+            <li><strong>OpenAI:</strong> AI responses (Text inputs, not stored by us)</li>
+          </ul>
+          <p>You can opt out of personalized ads via Settings → Privacy → Advertising on your device.</p>
+        </section>
+
+        <section>
+          <h2>7. Scheduled Notifications</h2>
+          <p>We may send daily meal ideas and gym nutrition reminders via local notifications scheduled entirely on your device. No notification data is sent to our servers.</p>
+          <p>Manage or disable notifications anytime via Settings → Apps → RecipeWallah → Notifications.</p>
+        </section>
+
+        <section>
+          <h2>8. Your Rights & Choices</h2>
+          <p>You are always in control:</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Deny location permission</strong> — app works normally; region suggestions may be limited.</li>
+            <li><strong>Deny notification permission</strong> — you simply will not receive reminders.</li>
+            <li><strong>Opt out of personalized ads</strong> — via your device advertising settings.</li>
+            <li><strong>Request data deletion</strong> — email us at support@recipewallah.com and we will confirm deletion within 7 days.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>9. International Users — GDPR & CCPA</h2>
+          <p>RecipeWallah is available globally and respects applicable privacy laws:</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>GDPR (EU/EEA users):</strong> We collect only the minimum data necessary (data minimisation). You have the right to access, correct, or request deletion of any data we hold about you.</li>
+            <li><strong>CCPA (California users):</strong> We do not sell your personal information. California residents have the right to know what data is collected and to request its deletion.</li>
+          </ul>
+          <p>To exercise any of these rights, contact us at <a href="mailto:support@recipewallah.com">support@recipewallah.com</a>.</p>
+        </section>
+
+        <section>
+          <h2>10. Children's Privacy</h2>
+          <p>RecipeWallah is not intended for children under 13. We do not knowingly collect personal data from children. If you believe a child has used the app and data has been collected, contact us immediately at support@recipewallah.com.</p>
+        </section>
+
+        <section>
+          <h2>11. Data Security</h2>
+          <p>We implement reasonable technical safeguards to protect any data processed through the app. Since we do not store personal health or location data on our servers, your most sensitive information never leaves your device.</p>
+        </section>
+
+        <section>
+          <h2>12. Changes to This Policy</h2>
+          <p>If we update this policy, we will notify you within the app. The "Last Updated" date at the top will always reflect the most recent version. Continued use of the app after changes means you accept the updated policy.</p>
+        </section>
+
+        <section>
+          <h2>13. Contact Us</h2>
+          <p>Questions, concerns, or want to report an AI content issue?</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><a href="mailto:support@recipewallah.com">support@recipewallah.com</a></li>
+            <li><a href="https://recipewallah.netlify.app/privacy-policy">https://recipewallah.netlify.app/privacy-policy</a></li>
+          </ul>
+          <p>We aim to respond within 48 hours.</p>
+          <p style={{ marginTop: '1rem', fontWeight: '500' }}>By using RecipeWallah, you acknowledge that you have read and understood this Privacy Policy.</p>
         </section>
       </div>
     </div>
@@ -273,7 +417,7 @@ function Navbar({ navigate, pathname, releaseData }) {
         <nav className="nav-menu">
           <button className={`nav-item ${pathname === '/' ? 'active' : ''}`} onClick={() => navTo('/')}>Home</button>
           <button className="nav-item" onClick={() => navTo('/', '#features')}>Features</button>
-          <button className={`nav-item ${pathname === '/privacy' ? 'active' : ''}`} onClick={() => navTo('/privacy')}>Privacy Policy</button>
+          <button className={`nav-item ${pathname === '/privacy-policy' ? 'active' : ''}`} onClick={() => navTo('/privacy-policy')}>Privacy Policy</button>
         </nav>
 
         <div className="nav-actions">
@@ -301,7 +445,7 @@ function Navbar({ navigate, pathname, releaseData }) {
         <div className="mobile-menu">
           <button className="mobile-nav-item" onClick={() => navTo('/')}>🏠 Home</button>
           <button className="mobile-nav-item" onClick={() => navTo('/', '#features')}>✨ Features</button>
-          <button className="mobile-nav-item" onClick={() => navTo('/privacy')}>🔒 Privacy Policy</button>
+          <button className="mobile-nav-item" onClick={() => navTo('/privacy-policy')}>🔒 Privacy Policy</button>
           <div className="mobile-menu-divider" />
           {releaseData?.directDownloadUrl ? (
             <a className="mobile-download-btn" href={releaseData.directDownloadUrl} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>
@@ -382,6 +526,7 @@ function HomeView({ releaseData, navigate }) {
       {/* How It Works Section */}
       <section className="premium-how-it-works reveal">
         <div className="section-header center">
+          <span className="section-label">Getting Started</span>
           <h2>How RecipeWallah Works</h2>
           <p>Three steps to a healthier, completely personalized daily routine.</p>
         </div>
@@ -399,12 +544,14 @@ function HomeView({ releaseData, navigate }) {
       {/* Features Showcase */}
       <section className="premium-features" id="features">
         <div className="section-header reveal">
-          <h2 className="serif-title">Designed for Every Lifestyle</h2>
+          <span className="section-label">Core Features</span>
+          <h2 className="serif-title">Designed for <span className="gradient-text">Every Lifestyle</span></h2>
           <p>Whether you're bulking, cutting, or managing dietary restrictions safely.</p>
         </div>
         <div className="features-grid">
           {featureCards.map((f, i) => (
             <div className={`feature-box reveal-delay-${i % 3}`} key={f.title}>
+              <span className="feature-box-icon">{f.icon}</span>
               <h3>{f.title}</h3>
               <p>{f.description}</p>
             </div>
@@ -415,7 +562,8 @@ function HomeView({ releaseData, navigate }) {
       {/* Testimonials */}
       <section className="premium-testimonials reveal">
         <div className="section-header center">
-          <h2 className="serif-title">Loved by Early Users</h2>
+          <span className="section-label">Community</span>
+          <h2 className="serif-title">Loved by <span className="gradient-text">Early Users</span></h2>
           <p>See how RecipeWallah is transforming daily routines.</p>
         </div>
         <div className="testimonials-grid">
@@ -821,6 +969,58 @@ function App() {
     return () => window.clearInterval(timer)
   }, [])
 
+  // ── Scroll-triggered animations ──────────────────────────────────────
+  useEffect(() => {
+    const SELECTOR = [
+      '.modern-step-card',
+      '.feature-box',
+      '.testimonial-card',
+      '.gallery-item',
+      '.faq-card',
+      '.stat-item',
+      '.section-header',
+      '.cta-inner',
+      '.stats-grid',
+      '.pill-badge',
+      '.hero-subtext',
+      '.hero-button-group',
+    ].join(', ')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target
+            // Stagger by sibling index
+            const siblings = Array.from(el.parentElement?.children ?? [])
+            const idx = siblings.indexOf(el)
+            el.style.transitionDelay = `${Math.min(idx * 0.08, 0.4)}s`
+            el.classList.add('is-visible')
+            observer.unobserve(el)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    )
+
+    const tick = () => {
+      const elements = document.querySelectorAll(SELECTOR)
+      elements.forEach((el) => {
+        if (!el.classList.contains('is-visible')) {
+          observer.observe(el)
+        }
+      })
+    }
+
+    // Small delay to let React render first
+    const id = setTimeout(tick, 100)
+    return () => {
+      clearTimeout(id)
+      observer.disconnect()
+    }
+  }, [pathname])
+
+
   const loadRelease = useCallback(async () => {
     setReleaseStatus({
       isLoading: true,
@@ -1164,7 +1364,7 @@ function App() {
         loadHistory={loadHistory}
       />
     )
-  } else if (pathname === '/privacy') {
+  } else if (pathname === '/privacy-policy') {
     pageContent = <PrivacyPolicyView navigate={navigate} />
   } else {
     pageContent = <HomeView releaseData={releaseData} navigate={navigate} />
@@ -1177,9 +1377,13 @@ function App() {
       {pathname !== '/admin' && (
         <footer className="universal-footer reveal">
           <div className="footer-content">
-            <p>&copy; {new Date().getFullYear()} RecipeWallah. All rights reserved.</p>
+            <div>
+              <p style={{fontWeight: '700', color: 'var(--ink)', fontSize: '1.1rem', marginBottom: '0.25rem'}}>RecipeWallah</p>
+              <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
+            </div>
             <div className="footer-links">
-              <button onClick={() => navigate('/privacy')}>Privacy Policy</button>
+              <button onClick={() => navigate('/privacy-policy')}>Privacy Policy</button>
+              <button onClick={() => navigate('/', '#features')}>Features</button>
             </div>
           </div>
         </footer>
