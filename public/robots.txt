@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow admin pages from indexing
+Disallow: /admin
+
+Sitemap: https://www.recipewallah.in/sitemap.xml

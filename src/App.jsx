@@ -60,10 +60,14 @@ const testimonials = [
 ]
 
 const faqItems = [
-  { q: "Is RecipeWallah free to use?", a: "Yes! Currently, the app is 100% free with no hidden subscriptions while we are in active development." },
-  { q: "How do I install the Android APK?", a: "To install directly from our site, download the APK file, open it on your Android device, and tap 'Allow from this source' if prompted by your security settings." },
-  { q: "Does the app save my medical data?", a: "No. The Medicine Awareness Layer evaluates potential interactions on the fly. We never persistently store your personal health condition records." },
-  { q: "Are the macronutrient trackers perfectly accurate?", a: "Our AI evaluates raw ingredients based on standard, highly-accurate nutritional databases. However, you should always exercise professional judgment for strict medical or competitive bodybuilding routines." },
+  { q: "Is RecipeWallah free to use?", a: "Yes! RecipeWallah is 100% free to download and use with absolutely no hidden subscriptions or paywalls — ever." },
+  { q: "Do I need to create an account or log in?", a: "No. RecipeWallah requires zero registration. You can use every feature of the app anonymously without any account. Your privacy is fully respected." },
+  { q: "How do I install the Android APK?", a: "Download the APK directly from our website. Open it on your Android device and tap 'Allow from this source' if prompted. Installation takes under 30 seconds." },
+  { q: "Can RecipeWallah help with bulking and cutting diets?", a: "Absolutely. RecipeWallah specializes in goal-specific meal plans. Whether you're bulking for muscle gain, cutting for fat loss, or maintaining — our AI creates high-protein, macro-accurate meals tailored to your exact goals." },
+  { q: "Is my health profile data safe?", a: "Yes, 100%. All health data you enter (age, weight, blood pressure, etc.) is stored only on your device using local storage. It is never uploaded to our servers. Your most sensitive data never leaves your phone." },
+  { q: "Does the app save my medical data?", a: "No. The Medicine Awareness Layer evaluates potential dietary interactions in real-time. We never store your personal health or medical records on our servers." },
+  { q: "Are the macronutrient values accurate?", a: "Our AI evaluates ingredients based on standard nutritional databases. For strict medical or competitive bodybuilding needs, always verify with a certified nutritionist or dietitian." },
+  { q: "What AI model does RecipeWallah use?", a: "RecipeWallah is powered by Google Gemini and OpenAI to deliver smart, context-aware recipes and nutrition advice personalized to your health profile and location." },
 ]
 
 const showcaseScenes = [
@@ -238,149 +242,79 @@ function PrivacyPolicyView({ navigate }) {
     <div className="page-shell privacy-shell">
       <div className="privacy-container reveal">
         <h1 className="serif-title gradient-text">Privacy Policy — RecipeWallah</h1>
-        <p className="last-updated">Last Updated: March 31, 2026 | Version 2.0 | https://recipewallah.netlify.app/privacy-policy</p>
+        <p className="last-updated">Last Updated: April 3, 2026</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem', color: '#10b981', fontWeight: '500' }}>
           <span>✓</span>
           <span>Google Play Data Safety Compliant</span>
         </div>
         <hr className="divider" />
         
-        <section>
-          <h2>1. Who We Are</h2>
-          <p>RecipeWallah is an AI-powered recipe and fitness app developed and maintained by RecipeWallah. By using this app, you agree to this Privacy Policy.</p>
-          <p>Contact: <a href="mailto:support@recipewallah.com">support@recipewallah.com</a><br/>
-          Policy URL: <a href="https://recipewallah.netlify.app/privacy-policy">https://recipewallah.netlify.app/privacy-policy</a></p>
-        </section>
+        <p>RecipeWallah ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application (the "App").</p>
 
         <section>
-          <h2>2. No Account Required</h2>
-          <p>RecipeWallah does not require any account, login, or registration. You use the app completely anonymously. We do not collect your name, email, phone number, or any identity-linked information.</p>
-        </section>
-
-        <section>
-          <h2>3. What Data We Collect & Why</h2>
-          <p>Here is a clear summary of every type of data involved:</p>
-          <div className="table-wrapper" style={{ overflowX: 'auto', marginBottom: '1rem' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
-                  <th style={{ padding: '0.75rem' }}>Data Type</th>
-                  <th style={{ padding: '0.75rem' }}>Why We Collect It</th>
-                  <th style={{ padding: '0.75rem' }}>Stored on Servers?</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
-                  <td style={{ padding: '0.75rem' }}>Approximate Location</td>
-                  <td style={{ padding: '0.75rem' }}>Region-specific recipe suggestions</td>
-                  <td style={{ padding: '0.75rem' }}>No — processed locally only</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
-                  <td style={{ padding: '0.75rem' }}>Health & Fitness Inputs</td>
-                  <td style={{ padding: '0.75rem' }}>Generate AI nutrition/protein results</td>
-                  <td style={{ padding: '0.75rem' }}>No — never stored permanently</td>
-                </tr>
-                <tr>
-                  <td style={{ padding: '0.75rem' }}>Anonymous Usage Stats</td>
-                  <td style={{ padding: '0.75rem' }}>Bug fixes & app improvement</td>
-                  <td style={{ padding: '0.75rem' }}>Yes — Firebase (anonymous)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <h2>1. Information Collection and Use</h2>
           
-          <h3>Location</h3>
-          <p>We only use coarse (network-based) location — never your precise GPS. It is used solely to suggest region-specific recipes and is never sent to or stored on our servers.</p>
-          
-          <h3>Fitness & Nutrition Inputs</h3>
-          <p>Inputs to the Protein Calculator or Muscle Gain Goal tools are sent to an AI model only to generate your result. We do not save this data anywhere. Once your session ends, it is permanently gone.</p>
-          
-          <h3>Anonymous Analytics</h3>
-          <p>Google Firebase collects anonymous usage patterns and crash reports to help us improve the app. This data is never linked to your identity.</p>
+          <h3>A. Health Profile Data (Sensitive Information)</h3>
+          <p>RecipeWallah allows you to provide a "Health Profile," including your name, age, weight, blood pressure, sugar levels, and medical history.</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Local Storage Only:</strong> All data entered in the Health Profile section is stored locally on your device using industry-standard storage (SharedPreferences).</li>
+            <li><strong>No Server Upload:</strong> We do NOT upload, transmit, or store your health data on our servers.</li>
+            <li><strong>Purpose:</strong> This data is used solely to enhance and personalize the prompts sent to our AI models (Gemini/OpenAI) to provide more relevant and safer recipe and nutrition recommendations.</li>
+          </ul>
+
+          <h3>B. Location Information</h3>
+          <p>The App requests access to your Approximate Location (Coarse Location).</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Purpose:</strong> This is used to provide region-specific recipe suggestions and local food trends. This information is processed in real-time and is not stored or shared with us.</li>
+          </ul>
+
+          <h3>C. Search Quota and Favorites</h3>
+          <p>We store information regarding your remaining search quota and your "Favorite" recipes locally on your device to ensure the App functions as intended.</p>
         </section>
 
         <section>
-          <h2>4. Data Retention</h2>
-          <p>We believe in keeping only what we need, for as long as we need it:</p>
+          <h2>2. Third-Party Services</h2>
+          <p>We use third-party services that may collect information used to identify you:</p>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>Location data:</strong> Never stored — discarded immediately after use</li>
-            <li><strong>Fitness inputs:</strong> Never stored — session only</li>
-            <li><strong>Firebase analytics:</strong> Up to 14 months (Google's default)</li>
-            <li><strong>AdMob ad data:</strong> Per Google AdMob policy</li>
+            <li><strong>Google AdMob:</strong> Used to display advertisements. AdMob may collect your Advertising ID to provide personalized ads. Google’s Privacy Policy.</li>
+            <li><strong>Firebase (Analytics & Crashlytics):</strong> Used to monitor app performance, track crashes, and understand user behavior to improve the App. This data is anonymized.</li>
+            <li><strong>AI Providers (Gemini/OpenAI):</strong> When you search for a recipe or ask a question, your query (and your local health metrics, if provided) is sent to AI providers to generate a response. This data is governed by the respective AI provider's privacy policies.</li>
           </ul>
         </section>
 
         <section>
-          <h2>5. AI-Generated Content — What You Should Know</h2>
-          <p>RecipeWallah uses Google Gemini and OpenAI to generate recipes, nutrition information, and fitness plans.</p>
+          <h2>3. AI-Generated Content Disclaimer</h2>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>AI can make mistakes.</strong> Always double-check ingredient amounts, nutritional values, and cooking instructions before use.</li>
-            <li><strong>Not medical advice.</strong> Any health or nutritional information is for general educational purposes only — not a substitute for professional medical advice. Consult a doctor or dietitian before making significant dietary or fitness changes.</li>
+            <li><strong>Accuracy:</strong> All recipes, nutrition advice, and medical information provided by RecipeWallah are AI-generated. AI can make mistakes.</li>
+            <li><strong>Not Medical Advice:</strong> Content provided by this App is for informational purposes only and is NOT a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</li>
           </ul>
         </section>
 
         <section>
-          <h2>6. Third-Party Services We Use</h2>
-          <p>These services operate under their own privacy policies:</p>
+          <h2>4. Data Retention and Deletion</h2>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>Google AdMob:</strong> Personalized ads (Advertising ID)</li>
-            <li><strong>Google Firebase:</strong> Analytics & crashes (Anonymous identifiers)</li>
-            <li><strong>Google Gemini:</strong> AI responses (Text inputs, not stored by us)</li>
-            <li><strong>OpenAI:</strong> AI responses (Text inputs, not stored by us)</li>
-          </ul>
-          <p>You can opt out of personalized ads via Settings → Privacy → Advertising on your device.</p>
-        </section>
-
-        <section>
-          <h2>7. Scheduled Notifications</h2>
-          <p>We may send daily meal ideas and gym nutrition reminders via local notifications scheduled entirely on your device. No notification data is sent to our servers.</p>
-          <p>Manage or disable notifications anytime via Settings → Apps → RecipeWallah → Notifications.</p>
-        </section>
-
-        <section>
-          <h2>8. Your Rights & Choices</h2>
-          <p>You are always in control:</p>
-          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>Deny location permission</strong> — app works normally; region suggestions may be limited.</li>
-            <li><strong>Deny notification permission</strong> — you simply will not receive reminders.</li>
-            <li><strong>Opt out of personalized ads</strong> — via your device advertising settings.</li>
-            <li><strong>Request data deletion</strong> — email us at support@recipewallah.com and we will confirm deletion within 7 days.</li>
+            <li><strong>User Control:</strong> You can view, edit, or delete your Health Profile data at any time directly within the App settings.</li>
+            <li><strong>App Uninstallation:</strong> Uninstalling the App will result in the deletion of all locally stored data, including your Health Profile and Favorites.</li>
           </ul>
         </section>
 
         <section>
-          <h2>9. International Users — GDPR & CCPA</h2>
-          <p>RecipeWallah is available globally and respects applicable privacy laws:</p>
+          <h2>5. Children’s Privacy</h2>
+          <p>RecipeWallah does not knowingly collect personal information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us.</p>
+        </section>
+
+        <section>
+          <h2>6. Changes to This Privacy Policy</h2>
+          <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+        </section>
+
+        <section>
+          <h2>7. Contact Us</h2>
+          <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at:</p>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>GDPR (EU/EEA users):</strong> We collect only the minimum data necessary (data minimisation). You have the right to access, correct, or request deletion of any data we hold about you.</li>
-            <li><strong>CCPA (California users):</strong> We do not sell your personal information. California residents have the right to know what data is collected and to request its deletion.</li>
+            <li>Email: <a href="mailto:petrolearns@gmail.com">petrolearns@gmail.com</a></li>
+            <li>Website: <a href="https://www.recipewallah.in/" target="_blank" rel="noreferrer">https://www.recipewallah.in/</a></li>
           </ul>
-          <p>To exercise any of these rights, contact us at <a href="mailto:support@recipewallah.com">support@recipewallah.com</a>.</p>
-        </section>
-
-        <section>
-          <h2>10. Children's Privacy</h2>
-          <p>RecipeWallah is not intended for children under 13. We do not knowingly collect personal data from children. If you believe a child has used the app and data has been collected, contact us immediately at support@recipewallah.com.</p>
-        </section>
-
-        <section>
-          <h2>11. Data Security</h2>
-          <p>We implement reasonable technical safeguards to protect any data processed through the app. Since we do not store personal health or location data on our servers, your most sensitive information never leaves your device.</p>
-        </section>
-
-        <section>
-          <h2>12. Changes to This Policy</h2>
-          <p>If we update this policy, we will notify you within the app. The "Last Updated" date at the top will always reflect the most recent version. Continued use of the app after changes means you accept the updated policy.</p>
-        </section>
-
-        <section>
-          <h2>13. Contact Us</h2>
-          <p>Questions, concerns, or want to report an AI content issue?</p>
-          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><a href="mailto:support@recipewallah.com">support@recipewallah.com</a></li>
-            <li><a href="https://recipewallah.netlify.app/privacy-policy">https://recipewallah.netlify.app/privacy-policy</a></li>
-          </ul>
-          <p>We aim to respond within 48 hours.</p>
           <p style={{ marginTop: '1rem', fontWeight: '500' }}>By using RecipeWallah, you acknowledge that you have read and understood this Privacy Policy.</p>
         </section>
       </div>
@@ -388,7 +322,7 @@ function PrivacyPolicyView({ navigate }) {
   )
 }
 
-function Navbar({ navigate, pathname, releaseData }) {
+function Navbar({ navigate, pathname, releaseData, isLoading }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -421,7 +355,9 @@ function Navbar({ navigate, pathname, releaseData }) {
         </nav>
 
         <div className="nav-actions">
-          {releaseData?.directDownloadUrl ? (
+          {isLoading ? (
+            <span className="nav-download-btn disabled" aria-disabled="true">APK loading...</span>
+          ) : releaseData?.directDownloadUrl ? (
             <a className="nav-download-btn" href={releaseData.directDownloadUrl} target="_blank" rel="noreferrer">
               Download APK
             </a>
@@ -447,7 +383,9 @@ function Navbar({ navigate, pathname, releaseData }) {
           <button className="mobile-nav-item" onClick={() => navTo('/', '#features')}>✨ Features</button>
           <button className="mobile-nav-item" onClick={() => navTo('/privacy-policy')}>🔒 Privacy Policy</button>
           <div className="mobile-menu-divider" />
-          {releaseData?.directDownloadUrl ? (
+          {isLoading ? (
+            <span className="mobile-download-btn disabled">APK loading...</span>
+          ) : releaseData?.directDownloadUrl ? (
             <a className="mobile-download-btn" href={releaseData.directDownloadUrl} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>
               ⬇ Download APK
             </a>
@@ -460,7 +398,7 @@ function Navbar({ navigate, pathname, releaseData }) {
   )
 }
 
-function HomeView({ releaseData, navigate }) {
+function HomeView({ releaseData, navigate, isLoading }) {
   return (
     <div className="page-shell new-home-shell">
       {/* Immersive Hero Section */}
@@ -476,8 +414,8 @@ function HomeView({ releaseData, navigate }) {
             RecipeWallah bridges the gap between delicious cooking, strict gym nutrition, and vital medicine awareness. All in one beautifully simple app.
           </p>
           <div className="hero-button-group">
-            <DownloadAction href={releaseData.directDownloadUrl} label="Download APK" pendingLabel="Building APK..." />
-            <DownloadAction href={releaseData.playStoreUrl} label="Google Play" pendingLabel="Play Store Pending" />
+            <DownloadAction href={isLoading ? null : releaseData.directDownloadUrl} label="Download APK" pendingLabel={isLoading ? "APK loading..." : "Building APK..."} />
+            <DownloadAction href={isLoading ? null : releaseData.playStoreUrl} label="Google Play" pendingLabel={isLoading ? "Loading..." : "Play Store Pending"} />
           </div>
         </div>
         
@@ -598,10 +536,53 @@ function HomeView({ releaseData, navigate }) {
         </div>
       </section>
 
+      {/* Why RecipeWallah Section */}
+      <section className="premium-why reveal" style={{ padding: '5rem 5%' }}>
+        <div className="section-header center" style={{ marginBottom: '3rem' }}>
+          <span className="section-label">Why Choose Us</span>
+          <h2 className="serif-title">Why <span className="gradient-text">RecipeWallah?</span></h2>
+          <p>Trusted by fitness enthusiasts and home cooks across India for smarter, safer daily nutrition.</p>
+        </div>
+        <div className="features-grid">
+          <div className="feature-box reveal-delay-0">
+            <span className="feature-box-icon">🔒</span>
+            <h3>Zero Login, Full Privacy</h3>
+            <p>No account. No cloud storage of your data. Every health detail you enter stays 100% local on your device — we never see it.</p>
+          </div>
+          <div className="feature-box reveal-delay-1">
+            <span className="feature-box-icon">🤖</span>
+            <h3>Powered by Gemini AI</h3>
+            <p>Industry-leading AI models from Google Gemini and OpenAI generate recipes so personalized they feel hand-crafted by a professional nutritionist.</p>
+          </div>
+          <div className="feature-box reveal-delay-2">
+            <span className="feature-box-icon">⚡</span>
+            <h3>Instant Results</h3>
+            <p>From your first search to a full meal plan with macros — RecipeWallah delivers actionable results in seconds, not minutes.</p>
+          </div>
+          <div className="feature-box reveal-delay-0">
+            <span className="feature-box-icon">🌏</span>
+            <h3>Made for India</h3>
+            <p>Geo-aware suggestions mean you see locally relevant recipes and regional ingredients — perfect for Indian kitchens and fitness cultures.</p>
+          </div>
+          <div className="feature-box reveal-delay-1">
+            <span className="feature-box-icon">💯</span>
+            <h3>Completely Free Forever</h3>
+            <p>No subscriptions, no paywalls, no trials. RecipeWallah's core features are free, because healthy eating and fitness should be accessible to everyone.</p>
+          </div>
+          <div className="feature-box reveal-delay-2">
+            <span className="feature-box-icon">🩺</span>
+            <h3>Medicine-Safe Eating</h3>
+            <p>Our unique medicine awareness layer alerts you to known dietary interactions, helping you make safer food choices while on medication.</p>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="premium-faq reveal">
         <div className="section-header center">
+          <span className="section-label">Help Center</span>
           <h2 className="serif-title">Frequently Asked Questions</h2>
+          <p>Everything you need to know about RecipeWallah.</p>
         </div>
         <div className="faq-grid">
           {faqItems.map((item, i) => (
@@ -613,6 +594,24 @@ function HomeView({ releaseData, navigate }) {
         </div>
       </section>
 
+      {/* SEO Article Section */}
+      <section className="premium-seo-content reveal" style={{ padding: '2rem 5%', maxWidth: '1000px', margin: '4rem auto' }}>
+        <div className="section-header center">
+          <h2 className="serif-title">The Best Free AI Recipe & Fitness Nutrition App</h2>
+        </div>
+        <div className="seo-text-body" style={{ background: 'var(--card-bg)', padding: '2.5rem', borderRadius: '16px', border: '1px solid var(--border-color)', color: 'var(--text)', fontSize: '1.05rem', lineHeight: '1.8' }}>
+          <p style={{ marginBottom: '1.5rem' }}>
+            Finding the right balance between delicious meals and strict fitness nutrition has never been easier. Whether you're tracking daily macros, searching for a fast <strong>AI macros calculator</strong>, or need specific <strong>bulking and cutting recipes</strong>, <em>RecipeWallah</em> is your ultimate mobile nutrition guide. Unlike traditional diet planners, RecipeWallah leverages powerful <strong>generative AI</strong> to act as your personalized home chef and digital nutritionist, seamlessly adapting to your dietary restrictions, fitness goals, and whatever ingredients you have in your fridge.
+          </p>
+          <p style={{ marginBottom: '1.5rem' }}>
+            Nutrition isn't just about counting calories and protein. Our unique <strong>medicine awareness layer</strong> adds a vital safety mechanism, helping users recognize potential dietary interactions with common medications. It is designed for everyone—from gym enthusiasts hunting for high-protein meal preps to families wanting safer, everyday healthy recipes. By combining <strong>smart food discovery</strong> with comprehensive macro tracking, RecipeWallah ensures that your diet perfectly complements your complete physical well-being.
+          </p>
+          <p>
+            The best part? RecipeWallah is a completely <strong>free food tracking app</strong> without mandatory subscriptions or hidden paywalls. Furthermore, your privacy is respected: you use the app securely on your device with no required account, ensuring your health profile stays entirely local. Say goodbye to the stress of meal planning and download the smartest artificial intelligence recipe creator and gym nutrition app today to effortlessly elevate your cooking and diet routines.
+          </p>
+        </div>
+      </section>
+
       {/* CTA Download Banner */}
       <section className="cta-banner reveal">
         <div className="cta-inner">
@@ -621,8 +620,8 @@ function HomeView({ releaseData, navigate }) {
             <p>RecipeWallah is 100% free. Download now and start your journey today.</p>
           </div>
           <div className="cta-actions">
-            <DownloadAction href={releaseData.directDownloadUrl} label="⬇ Download APK" pendingLabel="APK Coming Soon" />
-            <DownloadAction href={releaseData.playStoreUrl} label="Google Play" pendingLabel="Play Store Soon" />
+            <DownloadAction href={isLoading ? null : releaseData.directDownloadUrl} label="⬇ Download APK" pendingLabel={isLoading ? "APK loading..." : "APK Coming Soon"} />
+            <DownloadAction href={isLoading ? null : releaseData.playStoreUrl} label="Google Play" pendingLabel={isLoading ? "Loading..." : "Play Store Soon"} />
           </div>
         </div>
       </section>
@@ -1367,12 +1366,12 @@ function App() {
   } else if (pathname === '/privacy-policy') {
     pageContent = <PrivacyPolicyView navigate={navigate} />
   } else {
-    pageContent = <HomeView releaseData={releaseData} navigate={navigate} />
+    pageContent = <HomeView releaseData={releaseData} navigate={navigate} isLoading={releaseStatus.isLoading} />
   }
 
   return (
     <div className={isAdminRoute ? '' : 'app-container'}>
-      {!isAdminRoute && <Navbar navigate={navigate} pathname={pathname} releaseData={releaseData} />}
+      {!isAdminRoute && <Navbar navigate={navigate} pathname={pathname} releaseData={releaseData} isLoading={releaseStatus.isLoading} />}
       {pageContent}
       {pathname !== '/admin' && (
         <footer className="universal-footer reveal">
