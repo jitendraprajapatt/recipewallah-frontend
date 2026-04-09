@@ -248,12 +248,12 @@ function PrivacyPolicyView({ navigate }) {
           <span>Google Play Data Safety Compliant</span>
         </div>
         <hr className="divider" />
-        
+
         <p>RecipeWallah ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application (the "App").</p>
 
         <section>
           <h2>1. Information Collection and Use</h2>
-          
+
           <h3>A. Health Profile Data (Sensitive Information)</h3>
           <p>RecipeWallah allows you to provide a "Health Profile," including your name, age, weight, blood pressure, sugar levels, and medical history.</p>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
@@ -406,8 +406,8 @@ function HomeView({ releaseData, navigate, isLoading }) {
         <div className="hero-content reveal">
           <div className="pill-badge">v{releaseData.version || '1.0.0'} Now Live</div>
           <h1 className="serif-title">
-            Your Ultimate <br/>
-            <span className="gradient-text">Food & Fitness</span> <br/>
+            Your Ultimate <br />
+            <span className="gradient-text">Food & Fitness</span> <br />
             Companion.
           </h1>
           <p className="hero-subtext">
@@ -418,23 +418,23 @@ function HomeView({ releaseData, navigate, isLoading }) {
             <DownloadAction href={isLoading ? null : releaseData.playStoreUrl} label="Google Play" pendingLabel={isLoading ? "Loading..." : "Play Store Pending"} />
           </div>
         </div>
-        
+
         <div className="hero-graphics reveal-delay">
           <div className="blobs-container">
             <div className="blob blob-1"></div>
             <div className="blob blob-2"></div>
           </div>
           <div className="floating-card c1">
-             <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=70&fm=webp" alt="Food" />
-             <div className="card-lbl">Smart Recipes</div>
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=70&fm=webp" alt="Food" />
+            <div className="card-lbl">Smart Recipes</div>
           </div>
           <div className="floating-card c2">
-             <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=500&q=70&fm=webp" alt="Gym" />
-             <div className="card-lbl">Macro Tracking</div>
+            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=500&q=70&fm=webp" alt="Gym" />
+            <div className="card-lbl">Macro Tracking</div>
           </div>
           <div className="floating-card c3">
-             <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=70&fm=webp" alt="Medicine" />
-             <div className="card-lbl">Medicine Safety</div>
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=70&fm=webp" alt="Medicine" />
+            <div className="card-lbl">Medicine Safety</div>
           </div>
         </div>
       </section>
@@ -517,21 +517,21 @@ function HomeView({ releaseData, navigate, isLoading }) {
           ))}
         </div>
       </section>
-      
+
       {/* Visual Gallery */}
       <section className="premium-gallery" id="visuals">
         <div className="section-header center reveal">
-          <h2>Beautiful Visuals. <br/>Powerful Outcomes.</h2>
+          <h2>Beautiful Visuals. <br />Powerful Outcomes.</h2>
         </div>
         <div className="gallery-layout reveal-delay">
           {showcaseScenes.map((scene) => (
-             <div className="gallery-item" key={scene.id}>
-               <img src={scene.image} alt={scene.title} />
-               <div className="gallery-overlay">
-                 <h4>{scene.title}</h4>
-                 <p>{scene.subtitle}</p>
-               </div>
-             </div>
+            <div className="gallery-item" key={scene.id}>
+              <img src={scene.image} alt={scene.title} />
+              <div className="gallery-overlay">
+                <h4>{scene.title}</h4>
+                <p>{scene.subtitle}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
@@ -616,7 +616,7 @@ function HomeView({ releaseData, navigate, isLoading }) {
       <section className="cta-banner reveal">
         <div className="cta-inner">
           <div className="cta-text">
-            <h2 className="serif-title">Ready to eat smarter<br/>and train harder?</h2>
+            <h2 className="serif-title">Ready to eat smarter<br />and train harder?</h2>
             <p>RecipeWallah is 100% free. Download now and start your journey today.</p>
           </div>
           <div className="cta-actions">
@@ -808,20 +808,20 @@ function AdminView({
             <>
               {/* METRICS TAB */}
               {activeTab === 'metrics' && (
-              <section className="dashboard-card metrics-card" id="admin-metrics">
-                <article className="metric-tile">
-                  <span>Current Version</span>
-                  <strong>{releaseData.version}</strong>
-                </article>
-                <article className="metric-tile">
-                  <span>APK Status</span>
-                  <strong className={hasUploadedApk ? 'text-green' : 'text-muted'}>{hasUploadedApk ? '✅ Uploaded' : '⏳ Not uploaded'}</strong>
-                </article>
-                <article className="metric-tile">
-                  <span>Release History</span>
-                  <strong>{historyItems.length} entries</strong>
-                </article>
-              </section>
+                <section className="dashboard-card metrics-card" id="admin-metrics">
+                  <article className="metric-tile">
+                    <span>Current Version</span>
+                    <strong>{releaseData.version}</strong>
+                  </article>
+                  <article className="metric-tile">
+                    <span>APK Status</span>
+                    <strong className={hasUploadedApk ? 'text-green' : 'text-muted'}>{hasUploadedApk ? '✅ Uploaded' : '⏳ Not uploaded'}</strong>
+                  </article>
+                  <article className="metric-tile">
+                    <span>Release History</span>
+                    <strong>{historyItems.length} entries</strong>
+                  </article>
+                </section>
               )}
 
               {/* PUBLISH TAB */}
@@ -834,13 +834,13 @@ function AdminView({
                         <div className="form-group"><label htmlFor="version">Version</label><input id="version" name="version" type="text" placeholder="Example: v2.1.0" value={releaseForm.version} onChange={onReleaseFieldChange} required /></div>
                         <div className="form-group"><label htmlFor="platform">Platform</label><select id="platform" name="platform" value={releaseForm.platform} onChange={onReleaseFieldChange}><option value="android">Android</option><option value="ios">iOS</option><option value="both">Android + iOS</option></select></div>
                         <div className="form-group full-width"><label htmlFor="releaseNotes">Release Notes</label><textarea id="releaseNotes" name="releaseNotes" rows="3" placeholder="What changed in this release?" value={releaseForm.releaseNotes} onChange={onReleaseFieldChange} /></div>
-                        <div className="form-group"><label htmlFor="appFile">Upload APK (optional)</label><input id="appFile" type="file" accept=".apk" onChange={(event) => { const file = event.target.files?.[0] ?? null; if (file && !isApkFile(file)) { setSelectedFile(null); return; } setSelectedFile(file); }} />{selectedFile ? <p className="muted" style={{marginTop: '0.4rem', fontSize: '0.85rem'}}>Selected: {selectedFile.name}</p> : null}</div>
+                        <div className="form-group"><label htmlFor="appFile">Upload APK (optional)</label><input id="appFile" type="file" accept=".apk" onChange={(event) => { const file = event.target.files?.[0] ?? null; if (file && !isApkFile(file)) { setSelectedFile(null); return; } setSelectedFile(file); }} />{selectedFile ? <p className="muted" style={{ marginTop: '0.4rem', fontSize: '0.85rem' }}>Selected: {selectedFile.name}</p> : null}</div>
                         <div className="form-group"><label htmlFor="directDownloadUrl">Direct Download URL (optional)</label><input id="directDownloadUrl" name="directDownloadUrl" type="url" placeholder="https://example.com/app.apk" value={releaseForm.directDownloadUrl} onChange={onReleaseFieldChange} /></div>
                         <div className="form-group"><label htmlFor="playStoreUrl">Google Play URL (optional)</label><input id="playStoreUrl" name="playStoreUrl" type="url" placeholder="https://play.google.com/store/apps..." value={releaseForm.playStoreUrl} onChange={onReleaseFieldChange} /></div>
                         <div className="form-group"><label htmlFor="appStoreUrl">App Store URL (optional)</label><input id="appStoreUrl" name="appStoreUrl" type="url" placeholder="https://apps.apple.com/app/id..." value={releaseForm.appStoreUrl} onChange={onReleaseFieldChange} /></div>
                         <div className="form-group full-width">
                           <button type="submit" className="solid-btn" disabled={uploadState.isUploading}>{uploadState.isUploading ? `Publishing... ${uploadState.progress}%` : 'Publish Release'}</button>
-                          {uploadState.isUploading ? <progress max="100" value={uploadState.progress} style={{marginTop: '0.5rem', width: '100%'}} /> : null}
+                          {uploadState.isUploading ? <progress max="100" value={uploadState.progress} style={{ marginTop: '0.5rem', width: '100%' }} /> : null}
                           {uploadState.error ? <p className="status-message error">{uploadState.error}</p> : null}
                           {uploadState.success ? <p className="status-message success">{uploadState.success}</p> : null}
                         </div>
@@ -872,7 +872,7 @@ function AdminView({
                   <button type="button" className="danger-btn" onClick={onDeleteApk} disabled={deleteApkState.isLoading || !hasUploadedApk}>
                     {deleteApkState.isLoading ? 'Deleting APK...' : 'Delete Current APK File'}
                   </button>
-                  {!hasUploadedApk ? <p className="muted" style={{marginTop: '0.75rem'}}>No uploaded APK available to delete.</p> : null}
+                  {!hasUploadedApk ? <p className="muted" style={{ marginTop: '0.75rem' }}>No uploaded APK available to delete.</p> : null}
                   {deleteApkState.message ? <p className="status-message success">{deleteApkState.message}</p> : null}
                   {deleteApkState.error ? <p className="status-message error">{deleteApkState.error}</p> : null}
                 </section>
@@ -1377,7 +1377,7 @@ function App() {
         <footer className="universal-footer reveal">
           <div className="footer-content">
             <div>
-              <p style={{fontWeight: '700', color: 'var(--ink)', fontSize: '1.1rem', marginBottom: '0.25rem'}}>RecipeWallah</p>
+              <p style={{ fontWeight: '700', color: 'var(--ink)', fontSize: '1.1rem', marginBottom: '0.25rem' }}>RecipeWallah</p>
               <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
             </div>
             <div className="footer-links">
