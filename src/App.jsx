@@ -18,28 +18,28 @@ import './App.css'
 
 const featureCards = [
   {
-    icon: '🔍',
-    title: 'Adaptive Recipe Search',
+    icon: '🤖',
+    title: 'AI Smart Nutrition',
     description:
-      'Discover meal ideas by ingredients, cuisine, prep time, and dietary goals in one flow.',
+      'Intelligent background updates for localized recipe suggestions tailored to your goals.',
   },
   {
-    icon: '💪',
-    title: 'Workout Nutrition Companion',
+    icon: '🧘',
+    title: 'AI Fitness Tracking',
     description:
-      'Get AI-assisted meal suggestions for bulking, cutting, recovery, and balanced fitness routines.',
+      'Real-time form analysis and rep counting using advanced vision-based intelligence.',
   },
   {
-    icon: '💊',
-    title: 'Medicine Awareness Layer',
+    icon: '🏥',
+    title: 'Medical Database',
     description:
-      'See medicine info with strong caution messaging that prompts users to verify with professionals.',
+      'Comprehensive medicine lookup and body analysis with Health Profile tracking.',
   },
   {
-    icon: '📍',
-    title: 'Geo-aware Suggestions',
+    icon: '🔔',
+    title: 'Smart Reminders',
     description:
-      'Improve relevance by city context while avoiding permanent location storage.',
+      'Automated notifications for medicine timings, workout schedules, and meal prep.',
   },
 ]
 
@@ -52,9 +52,9 @@ const trustPoints = [
 ]
 
 const howItWorksSteps = [
-  { step: '01', title: 'Tell us your goals', description: 'Enter your available ingredients, dietary restrictions, or fitness goals like bulking or cutting.' },
-  { step: '02', title: 'Get AI-curated recipes', description: 'Receive instant, personalized meal ideas with exact macros, prep times, and step-by-step instructions.' },
-  { step: '03', title: 'Stay safe & consistent', description: 'Our Medicine Awareness Layer ensures you are mindful of interactions while you effortlessly track your daily nutrition.' },
+  { step: '01', title: 'Setup Your Profile', description: 'Enter your physical metrics for BMI analysis and tell us your health or fitness goals.' },
+  { step: '02', title: 'AI-Guided Activity', description: 'Get tailored recipes or start a workout with real-time pose detection and rep counting.' },
+  { step: '03', title: 'Stay on Track', description: 'Receive smart reminders for medicine and meals while tracking your progress locally and privately.' },
 ]
 
 const testimonials = [
@@ -64,14 +64,12 @@ const testimonials = [
 ]
 
 const faqItems = [
-  { q: "Is RecipeWallah free to use?", a: "Yes! RecipeWallah is 100% free to download and use with absolutely no hidden subscriptions or paywalls — ever." },
-  { q: "Do I need to create an account or log in?", a: "No. RecipeWallah requires zero registration. You can use every feature of the app anonymously without any account. Your privacy is fully respected." },
-  { q: "How do I install the Android APK?", a: "Download the APK directly from our website. Open it on your Android device and tap 'Allow from this source' if prompted. Installation takes under 30 seconds." },
-  { q: "Can RecipeWallah help with bulking and cutting diets?", a: "Absolutely. RecipeWallah specializes in goal-specific meal plans. Whether you're bulking for muscle gain, cutting for fat loss, or maintaining — our AI creates high-protein, macro-accurate meals tailored to your exact goals." },
-  { q: "Is my health profile data safe?", a: "Yes, 100%. All health data you enter (age, weight, blood pressure, etc.) is stored only on your device using local storage. It is never uploaded to our servers. Your most sensitive data never leaves your phone." },
-  { q: "Does the app save my medical data?", a: "No. The Medicine Awareness Layer evaluates potential dietary interactions in real-time. We never store your personal health or medical records on our servers." },
-  { q: "Are the macronutrient values accurate?", a: "Our AI evaluates ingredients based on standard nutritional databases. For strict medical or competitive bodybuilding needs, always verify with a certified nutritionist or dietitian." },
-  { q: "What AI model does RecipeWallah use?", a: "RecipeWallah is powered by Google Gemini and OpenAI to deliver smart, context-aware recipes and nutrition advice personalized to your health profile and location." },
+  { q: "Is RecipeWallah free to use?", a: "Yes! RecipeWallah is 100% free with no hidden subscriptions or paywalls. We use standard non-intrusive ads for premium maintenance." },
+  { q: "How does the AI Fitness Tracking work?", a: "RecipeWallah uses advanced vision-based intelligence to analyze your body's key points in real-time through your camera, allowing for rep counting and form analysis without your data ever leaving the device." },
+  { q: "Do I need to stay online for the AI features?", a: "While an internet connection is needed for generating new recipes, our intelligent sync system handles updates in the background, and fitness tracking works locally on your phone." },
+  { q: "How is the medical information managed?", a: "The Health tab includes a comprehensive medicine database and body analysis tools. You can store your BMI and Health Profile locally to get better personalized recommendations." },
+  { q: "Why do I need notifications?", a: "Smart reminders help you stay consistent with your medicine timings, workout appointments, and meal preparation directly on your device." },
+  { q: "Does the app support multiple languages?", a: "Yes! RecipeWallah features a seamless bilingual toggle between English and Hindi that affects the entire user interface and AI interactions." },
 ]
 
 const showcaseScenes = [
@@ -84,15 +82,15 @@ const showcaseScenes = [
   },
   {
     id: 'gym',
-    title: 'Gym Nutrition Guidance',
-    subtitle: 'Get high-protein meal suggestions for bulking, cutting, and recovery.',
+    title: 'Vision-Based Fitness',
+    subtitle: 'Real-time exercise tracking and form analysis using built-in intelligence.',
     image:
-      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=60&fm=webp',
+      'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=60&fm=webp',
   },
   {
     id: 'medicine',
-    title: 'Medicine Awareness',
-    subtitle: 'Read careful medicine notes with reminders to verify professionally.',
+    title: 'Health & Body Analysis',
+    subtitle: 'Manage your medical database, Health Profile, and BMI metrics.',
     image:
       'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=60&fm=webp',
   },
@@ -688,24 +686,24 @@ function HomeView({ releaseData, navigate, isLoading }) {
             <p>Industry-leading AI models from Google Gemini and OpenAI generate recipes so personalized they feel hand-crafted by a professional nutritionist.</p>
           </div>
           <div className="feature-box reveal-delay-2">
-            <span className="feature-box-icon">⚡</span>
-            <h3>Instant Results</h3>
-            <p>From your first search to a full meal plan with macros — RecipeWallah delivers actionable results in seconds, not minutes.</p>
+            <span className="feature-box-icon">🤸</span>
+            <h3>Vision-Based AI</h3>
+            <p>Our integrated vision intelligence analyzes your movement in real-time for live exercise tracking, rep counting, and perfect form guidance.</p>
           </div>
           <div className="feature-box reveal-delay-0">
-            <span className="feature-box-icon">🌏</span>
-            <h3>Made for India</h3>
-            <p>Geo-aware suggestions mean you see locally relevant recipes and regional ingredients — perfect for Indian kitchens and fitness cultures.</p>
+            <span className="feature-box-icon">🅾️</span>
+            <h3>Bilingual & Voice Search</h3>
+            <p>Seamlessly toggle between English and Hindi. Use advanced voice search for recipes and medicines for a hands-free, high-tech experience.</p>
           </div>
           <div className="feature-box reveal-delay-1">
-            <span className="feature-box-icon">💯</span>
-            <h3>Completely Free Forever</h3>
-            <p>No subscriptions, no paywalls, no trials. RecipeWallah's core features are free, because healthy eating and fitness should be accessible to everyone.</p>
+            <span className="feature-box-icon">🔔</span>
+            <h3>Smart Notification Center</h3>
+            <p>Never miss a dose or a rep. Set custom reminders for medicine, workouts, and meal prep using Flutter local notifications.</p>
           </div>
           <div className="feature-box reveal-delay-2">
             <span className="feature-box-icon">🩺</span>
-            <h3>Medicine-Safe Eating</h3>
-            <p>Our unique medicine awareness layer alerts you to known dietary interactions, helping you make safer food choices while on medication.</p>
+            <h3>Medical & Body Analysis</h3>
+            <p>A comprehensive built-in medical database paired with BMI tracking and a secure, local health profile management system.</p>
           </div>
         </div>
       </section>
@@ -734,13 +732,13 @@ function HomeView({ releaseData, navigate, isLoading }) {
         </div>
         <div className="seo-text-body" style={{ background: 'var(--card-bg)', padding: '2.5rem', borderRadius: '16px', border: '1px solid var(--border-color)', color: 'var(--text)', fontSize: '1.05rem', lineHeight: '1.8' }}>
           <p style={{ marginBottom: '1.5rem' }}>
-            Finding the right balance between delicious meals and strict fitness nutrition has never been easier. Whether you're tracking daily macros, searching for a fast <strong>AI macros calculator</strong>, or need specific <strong>bulking and cutting recipes</strong>, <em>RecipeWallah</em> is your ultimate mobile nutrition guide. Unlike traditional diet planners, RecipeWallah leverages powerful <strong>generative AI</strong> to act as your personalized home chef and digital nutritionist, seamlessly adapting to your dietary restrictions, fitness goals, and whatever ingredients you have in your fridge.
+            Elevate your lifestyle with <em>RecipeWallah</em>, the premium <strong>AI-powered health and fitness platform</strong>. Unlike standard meal planners, RecipeWallah integrates advanced <strong>vision-based intelligence</strong>, enabling real-time exercise tracking and live form analysis directly through your mobile camera. Whether you're mastering squats, tracking high-protein <strong>bulking and cutting recipes</strong>, or managing a personal <strong>medical database</strong>, our platform delivers an intelligent, all-in-one high-tech experience designed for the modern user.
           </p>
           <p style={{ marginBottom: '1.5rem' }}>
-            Nutrition isn't just about counting calories and protein. Our unique <strong>medicine awareness layer</strong> adds a vital safety mechanism, helping users recognize potential dietary interactions with common medications. It is designed for everyone—from gym enthusiasts hunting for high-protein meal preps to families wanting safer, everyday healthy recipes. By combining <strong>smart food discovery</strong> with comprehensive macro tracking, RecipeWallah ensures that your diet perfectly complements your complete physical well-being.
+            Our smart nutrition engine doesn't just display data—it uses an <strong>intelligent background sync</strong> to constantly update AI-curated recipes tailored to your pantry favorites. Coupled with a <strong>bilingual interface</strong> (English/Hindi) and <strong>voice search capabilities</strong>, RecipeWallah ensures that managing your health is seamless and hands-free. From BMI analysis in your secure local Health Profile to smart medication and workout reminders, every feature is optimized for safety, consistency, and a premium aesthetic using <strong>Glassmorphism</strong> design.
           </p>
           <p>
-            The best part? RecipeWallah is a completely <strong>free food tracking app</strong> without mandatory subscriptions or hidden paywalls. Furthermore, your privacy is respected: you use the app securely on your device with no required account, ensuring your health profile stays entirely local. Say goodbye to the stress of meal planning and download the smartest artificial intelligence recipe creator and gym nutrition app today to effortlessly elevate your cooking and diet routines.
+            The best part? RecipeWallah is a 100% <strong>free health and fitness app</strong>. We believe in total data privacy, meaning your medical history and physical metrics stay securely on your device. By combining state-of-the-art <strong>generative intelligence</strong> with cutting-edge vision technology, RecipeWallah is the most comprehensive tool for anyone seeking a smarter way to cook, train, and stay healthy without the need for multiple, expensive subscriptions.
           </p>
         </div>
       </section>
