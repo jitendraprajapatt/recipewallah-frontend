@@ -3,10 +3,14 @@ import {
   clearStoredSession,
   deleteUploadedApk,
   fetchAdminHistory,
+  fetchAdminQueries,
   fetchLatestRelease,
   getStoredSession,
   loginAdmin,
   storeSession,
+  submitContactQuery,
+  updateQueryStatus,
+  deleteQuery,
   uploadRelease,
 } from './api'
 import heroImage from './assets/hero.png'
@@ -237,6 +241,124 @@ function DownloadAction({ href, label, pendingLabel }) {
   )
 }
 
+function ContactView() {
+  const [formData, setFormData] = useState({ name: '', email: '', type: 'feedback', query: '' })
+  const [status, setStatus] = useState({ loading: false, success: '', error: '' })
+  const [progress, setProgress] = useState(0)
+
+  const simulateProgress = () => {
+    setProgress(0)
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 90) {
+          clearInterval(interval)
+          return 90
+        }
+        return prev + (90 - prev) * 0.1
+      })
+    }, 100)
+    return interval
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus({ loading: true, success: '', error: '' })
+    const interval = simulateProgress()
+
+    try {
+      await submitContactQuery(formData)
+      clearInterval(interval)
+      setProgress(100)
+      
+      setTimeout(() => {
+        setStatus({ loading: false, success: 'Thank you! Your message has been sent successfully.', error: '' })
+        setFormData({ name: '', email: '', type: 'feedback', query: '' })
+        setProgress(0)
+      }, 500)
+    } catch (err) {
+      clearInterval(interval)
+      setStatus({ loading: false, success: '', error: readApiError(err) })
+      setProgress(0)
+    }
+  }
+
+  return (
+    <div className="page-shell contact-shell">
+      <div className="contact-container reveal">
+        <div className="contact-header">
+          <h1 className="serif-title gradient-text">Contact Us</h1>
+          <p>Have feedback or need to report an issue? We're here to help.</p>
+        </div>
+        
+        <form className="premium-form contact-form" onSubmit={handleSubmit}>
+          {status.loading && <BrandLoading label="Sending Message..." />}
+          
+          {!status.loading && (
+            <>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="type">How can we help?</label>
+                <select
+                  id="type"
+                  value={formData.type}
+                  onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                  className="premium-select"
+                >
+                  <option value="feedback">Provide Feedback</option>
+                  <option value="report">Report an Issue</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="query">Your Message</label>
+                <textarea
+                  id="query"
+                  rows="5"
+                  value={formData.query}
+                  onChange={(e) => setFormData({ ...formData, query: e.target.value })}
+                  placeholder="Tell us what's on your mind..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" className="premium-btn submit-btn" disabled={status.loading}>
+                {status.loading ? 'Submitting...' : 'Send Message'}
+              </button>
+            </>
+          )}
+
+          {status.error && <p className="status-message error">{status.error}</p>}
+          {status.success && <p className="status-message success">{status.success}</p>}
+        </form>
+      </div>
+    </div>
+  )
+}
+
 function PrivacyPolicyView({ navigate }) {
   return (
     <div className="page-shell privacy-shell">
@@ -351,6 +473,7 @@ function Navbar({ navigate, pathname, releaseData, isLoading }) {
         <nav className="nav-menu">
           <button className={`nav-item ${pathname === '/' ? 'active' : ''}`} onClick={() => navTo('/')}>Home</button>
           <button className="nav-item" onClick={() => navTo('/', '#features')}>Features</button>
+          <button className={`nav-item ${pathname === '/contact' ? 'active' : ''}`} onClick={() => navTo('/contact')}>Contact</button>
           <button className={`nav-item ${pathname === '/privacy-policy' ? 'active' : ''}`} onClick={() => navTo('/privacy-policy')}>Privacy Policy</button>
         </nav>
 
@@ -381,6 +504,7 @@ function Navbar({ navigate, pathname, releaseData, isLoading }) {
         <div className="mobile-menu">
           <button className="mobile-nav-item" onClick={() => navTo('/')}>🏠 Home</button>
           <button className="mobile-nav-item" onClick={() => navTo('/', '#features')}>✨ Features</button>
+          <button className="mobile-nav-item" onClick={() => navTo('/contact')}>📧 Contact Us</button>
           <button className="mobile-nav-item" onClick={() => navTo('/privacy-policy')}>🔒 Privacy Policy</button>
           <div className="mobile-menu-divider" />
           {isLoading ? (
@@ -395,6 +519,15 @@ function Navbar({ navigate, pathname, releaseData, isLoading }) {
         </div>
       )}
     </header>
+  )
+}
+
+function BrandLoading({ label }) {
+  return (
+    <div className="brand-spinner-container reveal">
+      <div className="brand-spinner"></div>
+      {label && <span className="loading-text">{label}</span>}
+    </div>
   )
 }
 
@@ -665,6 +798,160 @@ function HistoryList({ historyItems, historyState, onRefresh }) {
   )
 }
 
+function QueriesList({ queries, loading, onUpdateStatus, onDelete, onRefresh }) {
+  const [actionMessage, setActionMessage] = useState('')
+  const [selectedQuery, setSelectedQuery] = useState(null)
+  const [statusType, setStatusType] = useState('') // 'resolved' or 'rejected'
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [progress, setProgress] = useState(0)
+
+  const openActionModal = (query, type) => {
+    setSelectedQuery(query)
+    setStatusType(type)
+    setActionMessage('')
+    setIsSubmitting(false)
+    setProgress(0)
+  }
+
+  const closeActionModal = () => {
+    setSelectedQuery(null)
+    setStatusType('')
+  }
+
+  const handleActionSubmit = async (e) => {
+    e.preventDefault()
+    if (!selectedQuery) return
+    
+    setIsSubmitting(true)
+    setProgress(0)
+    
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 90) {
+          clearInterval(interval)
+          return 90
+        }
+        return prev + (90 - prev) * 0.1
+      })
+    }, 100)
+
+    try {
+      await onUpdateStatus(selectedQuery._id, { status: statusType, adminMessage: actionMessage })
+      clearInterval(interval)
+      setProgress(100)
+      setTimeout(() => {
+        closeActionModal()
+      }, 500)
+    } catch (err) {
+      clearInterval(interval)
+      setIsSubmitting(false)
+      setProgress(0)
+    }
+  }
+
+  return (
+    <section className="dashboard-card queries-card" id="admin-queries">
+      <div className="card-header-row">
+        <h3>User Queries</h3>
+        <div className="header-actions">
+          <button className="icon-btn refresh-btn" title="Refresh" onClick={onRefresh} disabled={loading}>🔄</button>
+          {loading && <span className="loader-medium brand-accent"></span>}
+        </div>
+      </div>
+
+      {queries.length === 0 ? (
+        <p className="muted">No user queries found.</p>
+      ) : (
+        <div className="queries-table-container">
+          <table className="premium-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Type</th>
+                <th>Query</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {queries.map((q) => (
+                <tr key={q._id}>
+                  <td>{formatReleaseDate(q.createdAt)}</td>
+                  <td>
+                    <div><strong>{q.name}</strong></div>
+                    <div className="muted">{q.email}</div>
+                  </td>
+                  <td>
+                    <span className={`pill-badge type-${q.type}`}>
+                      {q.type}
+                    </span>
+                  </td>
+                  <td className="query-text-cell">
+                    <p title={q.query}>{q.query}</p>
+                    {q.adminMessage && (
+                      <div className="admin-reply-box">
+                        <strong>Reply:</strong> {q.adminMessage}
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    <span className={`status-pill status-${q.status}`}>
+                      {q.status}
+                    </span>
+                  </td>
+                  <td className="actions-cell">
+                    {q.status === 'pending' && (
+                      <div className="action-btns">
+                        <button className="icon-btn resolve" title="Resolve" onClick={() => openActionModal(q, 'resolved')}>✅</button>
+                        <button className="icon-btn reject" title="Reject" onClick={() => openActionModal(q, 'rejected')}>❌</button>
+                      </div>
+                    )}
+                    <button className="icon-btn delete" title="Delete" onClick={() => onDelete(q._id)}>🗑</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {selectedQuery && (
+        <div className="modal-overlay">
+          <div className="modal-content reveal">
+            <h3>{statusType === 'resolved' ? 'Resolve' : 'Reject'} Query</h3>
+            <p>From: <strong>{selectedQuery.name}</strong></p>
+            
+            {isSubmitting && (
+              <ProgressBar progress={progress} label={`Sending ${statusType} notification...`} />
+            )}
+
+            {!isSubmitting && (
+              <form onSubmit={handleActionSubmit}>
+                <div className="form-group">
+                  <label>Add a message for the user (will be sent via email):</label>
+                  <textarea
+                    value={actionMessage}
+                    onChange={(e) => setActionMessage(e.target.value)}
+                    placeholder={`Reason for ${statusType}...`}
+                    required
+                    rows="4"
+                  ></textarea>
+                </div>
+                <div className="modal-actions">
+                  <button type="button" className="ghost-btn" onClick={closeActionModal}>Cancel</button>
+                  <button type="submit" className={`solid-btn ${statusType}`}>Submit & Send Mail</button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}
+
 function AdminView({
   currentUser,
   isAdminAllowed,
@@ -685,12 +972,18 @@ function AdminView({
   historyItems,
   historyState,
   loadHistory,
+  queries,
+  queriesLoading,
+  onUpdateQueryStatus,
+  onDeleteQuery,
+  onRefreshQueries,
 }) {
   const hasUploadedApk = Boolean(releaseData.fileName || releaseData.storagePath)
   const [activeTab, setActiveTab] = useState('publish')
 
   const tabs = [
     { id: 'publish', label: '📦 Publish Release' },
+    { id: 'queries', label: '💬 User Queries' },
     { id: 'metrics', label: '📊 Metrics' },
     { id: 'delete', label: '🗑 Delete APK' },
     { id: 'history', label: '📋 History' },
@@ -878,13 +1171,46 @@ function AdminView({
                 </section>
               )}
 
+              {/* QUERIES TAB */}
+              {activeTab === 'queries' && (
+                <QueriesList
+                  queries={queries}
+                  loading={queriesLoading}
+                  onUpdateStatus={onUpdateQueryStatus}
+                  onDelete={onDeleteQuery}
+                  onRefresh={onRefreshQueries}
+                />
+              )}
+
               {/* HISTORY TAB */}
               {activeTab === 'history' && (
                 <HistoryList historyItems={historyItems} historyState={historyState} onRefresh={loadHistory} />
               )}
             </>
-          ) : null}
+          ) : (
+            <div className="unauthorized-message reveal">
+              <div className="danger-icon">⚠️</div>
+              <h2>Access Restricted</h2>
+              <p>Your account (<strong>{currentUser?.email}</strong>) does not have administrative permissions.</p>
+              <p className="muted">Please contact the system administrator to whitelist your email.</p>
+              <button className="premium-btn" onClick={onLogout}>Sign Out</button>
+            </div>
+          )}
         </main>
+      </div>
+    </div>
+  )
+}
+
+function ProgressBar({ progress, label }) {
+  return (
+    <div className="progress-wrapper reveal">
+      <div className="progress-info">
+        <span>{label || 'Sending...'}</span>
+        <span className="progress-percentage">{Math.round(progress)}%</span>
+      </div>
+      <div className="progress-container">
+        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
       </div>
     </div>
   )
@@ -934,6 +1260,8 @@ function App() {
     error: '',
   })
   const [historyItems, setHistoryItems] = useState([])
+  const [queries, setQueries] = useState([])
+  const [queriesLoading, setQueriesLoading] = useState(false)
 
   const currentUser = session?.user ?? null
   const authToken = session?.token ?? ''
@@ -1093,6 +1421,50 @@ function App() {
       })
     }
   }, [authToken, isAdminAllowed])
+
+  const loadQueries = useCallback(async () => {
+    if (!authToken || !isAdminAllowed) return
+    setQueriesLoading(true)
+    try {
+      const data = await fetchAdminQueries(authToken)
+      setQueries(data)
+    } catch (error) {
+      console.error('Fetch queries error:', error)
+    } finally {
+      setQueriesLoading(false)
+    }
+  }, [authToken, isAdminAllowed])
+
+  useEffect(() => {
+    if (isAdminRoute && authToken && isAdminAllowed) {
+      void loadQueries()
+    }
+  }, [isAdminRoute, authToken, isAdminAllowed, loadQueries])
+
+  const onUpdateQueryStatus = async (id, data) => {
+    try {
+      setQueriesLoading(true)
+      await updateQueryStatus(authToken, id, data)
+      await loadQueries()
+    } catch (error) {
+      alert(readApiError(error))
+    } finally {
+      setQueriesLoading(false)
+    }
+  }
+
+  const onDeleteQuery = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this query?')) return
+    try {
+      setQueriesLoading(true)
+      await deleteQuery(authToken, id)
+      await loadQueries()
+    } catch (error) {
+      alert(readApiError(error))
+    } finally {
+      setQueriesLoading(false)
+    }
+  }
 
   useEffect(() => {
     void loadRelease()
@@ -1361,8 +1733,15 @@ function App() {
         historyItems={historyItems}
         historyState={historyState}
         loadHistory={loadHistory}
+        queries={queries}
+        queriesLoading={queriesLoading}
+        onUpdateQueryStatus={onUpdateQueryStatus}
+        onDeleteQuery={onDeleteQuery}
+        onRefreshQueries={loadQueries}
       />
     )
+  } else if (pathname === '/contact') {
+    pageContent = <ContactView />
   } else if (pathname === '/privacy-policy') {
     pageContent = <PrivacyPolicyView navigate={navigate} />
   } else {
@@ -1381,6 +1760,7 @@ function App() {
               <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
             </div>
             <div className="footer-links">
+              <button onClick={() => navigate('/contact')}>Contact Us</button>
               <button onClick={() => navigate('/privacy-policy')}>Privacy Policy</button>
               <button onClick={() => navigate('/', '#features')}>Features</button>
             </div>

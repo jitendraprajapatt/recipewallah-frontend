@@ -208,4 +208,48 @@ export function clearStoredSession() {
   window.localStorage.removeItem(SESSION_STORAGE_KEY)
 }
 
+export async function submitContactQuery(data) {
+  const response = await fetch(buildUrl('/api/contact'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  const payload = await parseJsonResponse(response)
+  if (!response.ok) throw createRequestError(response.status, payload)
+  return payload
+}
+
+export async function fetchAdminQueries(token) {
+  const response = await fetch(buildUrl('/api/admin/contacts'), {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  const payload = await parseJsonResponse(response)
+  if (!response.ok) throw createRequestError(response.status, payload)
+  return payload?.contacts ?? []
+}
+
+export async function updateQueryStatus(token, id, data) {
+  const response = await fetch(buildUrl(`/api/admin/contacts/${id}`), {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  const payload = await parseJsonResponse(response)
+  if (!response.ok) throw createRequestError(response.status, payload)
+  return payload
+}
+
+export async function deleteQuery(token, id) {
+  const response = await fetch(buildUrl(`/api/admin/contacts/${id}`), {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  const payload = await parseJsonResponse(response)
+  if (!response.ok) throw createRequestError(response.status, payload)
+  return payload
+}
+
 export { API_BASE_URL }
