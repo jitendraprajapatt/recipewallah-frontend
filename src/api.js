@@ -1,14 +1,18 @@
-const rawApiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'https://recipewallah-backend.onrender.com').trim()
-const API_BASE_URL = rawApiBaseUrl.replace(/\/+$/, '')
+const RENDER_BASE_URL = (import.meta.env.VITE_API_RENDER_URL ?? 'https://recipewallah-backend.onrender.com').trim().replace(/\/+$/, '')
+const VERCEL_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? 'https://recipewallah-backend.vercel.app').trim().replace(/\/+$/, '')
+
+const API_BASE_URL = VERCEL_BASE_URL
 const SESSION_STORAGE_KEY = 'recipewallah-admin-session'
 
-function buildUrl(pathname) {
+function buildUrl(pathname, useRender = false) {
+  const base = useRender ? RENDER_BASE_URL : API_BASE_URL
+
   if (!pathname) {
-    return API_BASE_URL
+    return base
   }
 
   const path = pathname.startsWith('/') ? pathname : `/${pathname}`
-  return `${API_BASE_URL}${path}`
+  return `${base}${path}`
 }
 
 async function parseJsonResponse(response) {
@@ -107,7 +111,7 @@ export function uploadRelease({ token, release, file, onProgress }) {
     }
 
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', buildUrl('/api/release'))
+    xhr.open('POST', buildUrl('/api/release', true))
     xhr.responseType = 'json'
     xhr.setRequestHeader('Authorization', `Bearer ${token}`)
 
@@ -140,7 +144,7 @@ export function uploadRelease({ token, release, file, onProgress }) {
 }
 
 export async function deleteUploadedApk(token) {
-  const response = await fetch(buildUrl('/api/release/apk'), {
+  const response = await fetch(buildUrl('/api/release/apk', true), {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
