@@ -15,9 +15,11 @@ export const vercelClient = axios.create({
 
 /**
  * Client for APK and Release management routed to Render.
+ * Timeout increased to 15 minutes to allow for large APK uploads.
  */
 export const renderClient = axios.create({
   baseURL: RENDER_BASE_URL,
+  timeout: 15 * 60 * 1000, 
 })
 
 // Debugging interceptor

@@ -476,12 +476,12 @@ function Navbar({ navigate, pathname, releaseData, isLoading }) {
         </nav>
 
         <div className="nav-actions">
-          {isLoading ? (
-            <span className="nav-download-btn disabled" aria-disabled="true">APK loading...</span>
-          ) : releaseData?.directDownloadUrl ? (
+          {releaseData?.directDownloadUrl ? (
             <a className="nav-download-btn" href={releaseData.directDownloadUrl} target="_blank" rel="noreferrer">
               Download APK
             </a>
+          ) : isLoading ? (
+            <span className="nav-download-btn disabled" aria-disabled="true">Checking APK...</span>
           ) : (
             <span className="nav-download-btn disabled" aria-disabled="true">APK Pending</span>
           )}
@@ -505,12 +505,12 @@ function Navbar({ navigate, pathname, releaseData, isLoading }) {
           <button className="mobile-nav-item" onClick={() => navTo('/contact')}>📧 Contact Us</button>
           <button className="mobile-nav-item" onClick={() => navTo('/privacy-policy')}>🔒 Privacy Policy</button>
           <div className="mobile-menu-divider" />
-          {isLoading ? (
-            <span className="mobile-download-btn disabled">APK loading...</span>
-          ) : releaseData?.directDownloadUrl ? (
+          {releaseData?.directDownloadUrl ? (
             <a className="mobile-download-btn" href={releaseData.directDownloadUrl} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>
               ⬇ Download APK
             </a>
+          ) : isLoading ? (
+            <span className="mobile-download-btn disabled">Checking APK...</span>
           ) : (
             <span className="mobile-download-btn disabled">APK Coming Soon</span>
           )}
@@ -545,8 +545,16 @@ function HomeView({ releaseData, navigate, isLoading }) {
             RecipeWallah bridges the gap between delicious cooking, strict gym nutrition, and vital medicine awareness. All in one beautifully simple app.
           </p>
           <div className="hero-button-group">
-            <DownloadAction href={isLoading ? null : releaseData.directDownloadUrl} label="Download APK" pendingLabel={isLoading ? "APK loading..." : "Building APK..."} />
-            <DownloadAction href={isLoading ? null : releaseData.playStoreUrl} label="Google Play" pendingLabel={isLoading ? "Loading..." : "Play Store Pending"} />
+            <DownloadAction 
+              href={releaseData.directDownloadUrl || null} 
+              label="Download APK" 
+              pendingLabel={isLoading ? "Checking APK..." : "APK Coming Soon"} 
+            />
+            <DownloadAction 
+              href={releaseData.playStoreUrl || null} 
+              label="Google Play" 
+              pendingLabel={isLoading ? "Loading..." : "Play Store Pending"} 
+            />
           </div>
         </div>
 
