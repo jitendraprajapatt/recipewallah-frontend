@@ -1,5 +1,5 @@
-const RENDER_BASE_URL = (import.meta.env.VITE_API_RENDER_URL ?? 'https://recipewallah-backend.onrender.com').trim().replace(/\/+$/, '')
-const VERCEL_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? 'https://recipewallah-backend.vercel.app').trim().replace(/\/+$/, '')
+const RENDER_BASE_URL = (import.meta.env.VITE_API_RENDER_URL ?? '').trim().replace(/\/+$/, '')
+const VERCEL_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').trim().replace(/\/+$/, '')
 
 const API_BASE_URL = VERCEL_BASE_URL
 const SESSION_STORAGE_KEY = 'recipewallah-admin-session'
