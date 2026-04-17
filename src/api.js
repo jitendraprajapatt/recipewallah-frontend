@@ -12,7 +12,14 @@ function buildUrl(pathname, useRender = false) {
   }
 
   const path = pathname.startsWith('/') ? pathname : `/${pathname}`
-  return `${base}${path}`
+  const url = `${base}${path}`
+
+  // Log the URL in development mode to help debug "Failed to fetch" issues
+  if (import.meta.env.DEV) {
+    console.log(`[API] ${useRender ? 'RENDER' : 'VERCEL'} URL:`, url)
+  }
+
+  return url
 }
 
 async function parseJsonResponse(response) {
