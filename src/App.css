@@ -232,6 +232,32 @@
   box-shadow: 0 8px 24px rgba(255,106,0,0.45);
 }
 
+.nav-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  color: var(--ink-muted);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.nav-social-icon:hover {
+  background: var(--bg-glass-2);
+  color: #E1306C; /* Instagram Color */
+  border-color: rgba(225, 48, 108, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(225, 48, 108, 0.2);
+}
+
+.insta-svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* Hamburger */
 .hamburger-btn {
   display: none;
@@ -1158,6 +1184,7 @@
 .footer-links {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .footer-links button {
@@ -1172,6 +1199,18 @@
 }
 
 .footer-links button:hover { color: var(--brand-primary); }
+
+.footer-social-link {
+  text-decoration: none;
+  color: var(--ink-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.footer-social-link:hover {
+  color: #E1306C;
+}
 
 /* ===================== ADMIN ===================== */
 .admin-shell {

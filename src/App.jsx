@@ -496,6 +496,9 @@ function Navbar({ navigate, pathname, releaseData, isLoading }) {
         </nav>
 
         <div className="nav-actions">
+          <a href="https://www.instagram.com/recipewalllah/" target="_blank" rel="noreferrer" className="nav-social-icon" title="Follow on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="insta-svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
           {releaseData?.directDownloadUrl ? (
             <a className="nav-download-btn" href={releaseData.directDownloadUrl} target="_blank" rel="noreferrer">
               Download APK
@@ -760,13 +763,13 @@ function HomeView({ releaseData, navigate, isLoading }) {
         </div>
         <div className="seo-text-body" style={{ background: 'var(--card-bg)', padding: '2.5rem', borderRadius: '16px', border: '1px solid var(--border-color)', color: 'var(--text)', fontSize: '1.05rem', lineHeight: '1.8' }}>
           <p style={{ marginBottom: '1.5rem' }}>
-            Elevate your lifestyle with <em>RecipeWallah</em>, the premium <strong>AI-powered health and fitness platform</strong>. Unlike standard meal planners, RecipeWallah integrates advanced <strong>vision-based intelligence</strong>, enabling real-time exercise tracking and live form analysis directly through your mobile camera. Whether you're mastering squats, tracking high-protein <strong>bulking and cutting recipes</strong>, or managing a personal <strong>medical database</strong>, our platform delivers an intelligent, all-in-one high-tech experience designed for the modern user.
+            Elevate your lifestyle with <strong>RecipeWallah (RW)</strong>, the premium <strong>AI-powered health and fitness platform</strong>. Unlike standard meal planners, RecipeWallah integrates advanced <strong>vision-based intelligence</strong>, enabling real-time exercise tracking and live form analysis directly through your mobile camera. Whether you're mastering squats in the <strong>gym</strong>, tracking high-protein <strong>bulking and cutting recipes</strong> like <strong>sabji</strong> and <strong>non-veg</strong> favorites, or managing a personal <strong>medical database</strong>, our platform delivers an intelligent, all-in-one high-tech experience designed for the modern user.
           </p>
           <p style={{ marginBottom: '1.5rem' }}>
-            Our smart nutrition engine doesn't just display data—it uses an <strong>intelligent background sync</strong> to constantly update AI-curated recipes tailored to your pantry favorites. Coupled with a <strong>bilingual interface</strong> (English/Hindi) and <strong>voice search capabilities</strong>, RecipeWallah ensures that managing your health is seamless and hands-free. From BMI analysis in your secure local Health Profile to smart medication and workout reminders, every feature is optimized for safety, consistency, and a premium aesthetic using <strong>Glassmorphism</strong> design.
+            Our smart nutrition engine doesn't just display data—it uses an <strong>intelligent background sync</strong> to constantly update AI-curated recipes tailored to your pantry favorites, including fresh <strong>fruit</strong> nutrition and high-<strong>protein</strong> <strong>food</strong> options. Coupled with a <strong>bilingual interface</strong> (English/Hindi) and <strong>voice search capabilities</strong>, RecipeWallah ensures that managing your health is seamless and hands-free. From BMI analysis in your secure local Health Profile to smart <strong>medicine</strong> and workout reminders, every feature is optimized for safety, consistency, and a premium aesthetic using <strong>Glassmorphism</strong> design.
           </p>
           <p>
-            The best part? RecipeWallah is a 100% <strong>free health and fitness app</strong>. We believe in total data privacy, meaning your medical history and physical metrics stay securely on your device. By combining state-of-the-art <strong>generative intelligence</strong> with cutting-edge vision technology, RecipeWallah is the most comprehensive tool for anyone seeking a smarter way to cook, train, and stay healthy without the need for multiple, expensive subscriptions.
+            The best part? RecipeWallah is a 100% <strong>free health and fitness app</strong>. We believe in total data privacy, meaning your medical history and physical metrics stay securely on your device. By combining state-of-the-art <strong>generative intelligence</strong> with cutting-edge vision technology, RecipeWallah (the ultimate <strong>wala</strong> for health) is the most comprehensive tool for anyone seeking a smarter way to cook, train, and stay healthy without the need for multiple, expensive subscriptions.
           </p>
         </div>
       </section>
@@ -1786,6 +1789,9 @@ function App() {
               <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
             </div>
             <div className="footer-links">
+              <a href="https://www.instagram.com/recipewalllah/" target="_blank" rel="noreferrer" className="footer-social-link">
+                Instagram
+              </a>
               <button onClick={() => navigate('/contact')}>Contact Us</button>
               <button onClick={() => navigate('/privacy-policy')}>Privacy Policy</button>
               <button onClick={() => navigate('/', '#features')}>Features</button>
