@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const RENDER_BASE_URL = (import.meta.env.VITE_API_RENDER_URL ?? '').trim().replace(/\/+$/, '')
-const VERCEL_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').trim().replace(/\/+$/, '')
+const VERCEL_BASE_URL = (import.meta.env.VITE_AI_VERCEL_URL ?? '').trim().replace(/\/+$/, '')
 
 /**
  * Client for general API calls routed to Vercel.
