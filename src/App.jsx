@@ -362,7 +362,7 @@ function PrivacyPolicyView({ navigate }) {
     <div className="page-shell privacy-shell">
       <div className="privacy-container reveal">
         <h1 className="serif-title gradient-text">Privacy Policy — RecipeWallah</h1>
-        <p className="last-updated">Last Updated: April 3, 2026</p>
+        <p className="last-updated">Last Updated: April 22, 2026</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem', color: '#10b981', fontWeight: '500' }}>
           <span>✓</span>
           <span>Google Play Data Safety Compliant</span>
@@ -374,53 +374,73 @@ function PrivacyPolicyView({ navigate }) {
         <section>
           <h2>1. Information Collection and Use</h2>
 
-          <h3>A. Health Profile Data (Sensitive Information)</h3>
-          <p>RecipeWallah allows you to provide a "Health Profile," including your name, age, weight, blood pressure, sugar levels, and medical history.</p>
+          <h3>A. Health & Fitness Data (Sensitive Information)</h3>
+          <p>RecipeWallah allows you to provide a "Health Profile," including your name, age, weight, height, BMI, dietary restrictions, allergies, and medical history. We also track in-app workout sessions and exercise repetitions via our Live AI Coach.</p>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>Local Storage Only:</strong> All data entered in the Health Profile section is stored locally on your device using industry-standard storage (SharedPreferences).</li>
-            <li><strong>No Server Upload:</strong> We do NOT upload, transmit, or store your health data on our servers.</li>
-            <li><strong>Purpose:</strong> This data is used solely to enhance and personalize the prompts sent to our AI models (Gemini/OpenAI) to provide more relevant and safer recipe and nutrition recommendations.</li>
+            <li><strong>Local Storage Only:</strong> All health profile data, workout history, and user settings are stored locally on your device using industry-standard storage.</li>
+            <li><strong>No Server Upload:</strong> We do NOT upload, transmit, or store your personal health profile on our own servers.</li>
+            <li><strong>Purpose:</strong> This data is used solely to enhance and personalize the prompts sent to our AI models to provide tailored recipe, nutrition, and fitness recommendations.</li>
           </ul>
 
-          <h3>B. Location Information</h3>
-          <p>The App requests access to your Approximate Location (Coarse Location).</p>
+          <h3>B. Camera and Image Data</h3>
+          <p>The App requests access to your device's Camera and Photo Gallery/Media.</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Live AI Coach (Local Processing):</strong> When using the Live AI Coach, the camera stream is processed strictly locally on your device using Google ML Kit for pose detection. Video frames are analyzed in real-time to count repetitions and analyze posture. No video or image data from the Live Coach is ever recorded, saved, or sent to any server.</li>
+            <li><strong>Body Analysis & Medical Reports (AI Processing):</strong> When you upload or take a photo for "Body Analysis" or "Medical Report Analysis," the image is temporarily and securely transmitted to our AI Providers (Gemini/OpenAI) to generate an analysis. We do not store these images on our servers after the analysis is returned.</li>
+          </ul>
+
+          <h3>C. Location Information</h3>
+          <p>The App requests access to your Approximate and Exact Location.</p>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
             <li><strong>Purpose:</strong> This is used to provide region-specific recipe suggestions and local food trends. This information is processed in real-time and is not stored or shared with us.</li>
           </ul>
 
-          <h3>C. Search Quota and Favorites</h3>
-          <p>We store information regarding your remaining search quota and your "Favorite" recipes locally on your device to ensure the App functions as intended.</p>
+          <h3>D. Notifications and Background Activity</h3>
+          <p>The App requests permission to send notifications and run background tasks (including ignoring battery optimizations).</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Purpose:</strong> This allows the App to deliver your scheduled daily AI recipe suggestions (e.g., at 8 AM, 7 PM) and personalized health/medicine reminders exactly when you need them.</li>
+          </ul>
+
+          <h3>E. Microphone (Audio)</h3>
+          <p>The App may request microphone access.</p>
+          <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+            <li><strong>Purpose:</strong> This permission is tied to the underlying camera plugins used by the App. We do not actively record, listen to, or store your voice or audio data.</li>
+          </ul>
+
+          <h3>F. Search Quota, Favorites, and Reminders</h3>
+          <p>We store information regarding your remaining ad-rewarded search quotas, "Favorite" recipes, and scheduled reminders locally on your device to ensure the App functions as intended.</p>
         </section>
 
         <section>
           <h2>2. Third-Party Services</h2>
-          <p>We use third-party services that may collect information used to identify you:</p>
+          <p>We use third-party services that may collect information used to identify you or provide core functionalities:</p>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>Google AdMob:</strong> Used to display advertisements. AdMob may collect your Advertising ID to provide personalized ads. Google’s Privacy Policy.</li>
+            <li><strong>Google AdMob:</strong> Used to display banner, interstitial, and rewarded video advertisements. AdMob may collect your Advertising ID to provide personalized ads. (Google’s Privacy Policy)</li>
+            <li><strong>Google ML Kit:</strong> Used locally on your device for real-time pose detection and text recognition.</li>
+            <li><strong>AI Providers (Gemini/OpenAI):</strong> When you search for a recipe, ask a question, or analyze a photo (medical/body), your query and relevant local health metrics are securely sent to AI providers to generate a response. This data is governed by the respective AI provider's privacy policies.</li>
             <li><strong>Firebase (Analytics & Crashlytics):</strong> Used to monitor app performance, track crashes, and understand user behavior to improve the App. This data is anonymized.</li>
-            <li><strong>AI Providers (Gemini/OpenAI):</strong> When you search for a recipe or ask a question, your query (and your local health metrics, if provided) is sent to AI providers to generate a response. This data is governed by the respective AI provider's privacy policies.</li>
           </ul>
         </section>
 
         <section>
           <h2>3. AI-Generated Content Disclaimer</h2>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>Accuracy:</strong> All recipes, nutrition advice, and medical information provided by RecipeWallah are AI-generated. AI can make mistakes.</li>
-            <li><strong>Not Medical Advice:</strong> Content provided by this App is for informational purposes only and is NOT a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</li>
+            <li><strong>Accuracy:</strong> All recipes, nutrition advice, fitness plans, medical report summaries, and body analyses provided by RecipeWallah are AI-generated. AI can make mistakes.</li>
+            <li><strong>Not Medical Advice:</strong> Content provided by this App is for informational purposes only and is NOT a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition or before starting any new fitness/diet regimen.</li>
           </ul>
         </section>
 
         <section>
           <h2>4. Data Retention and Deletion</h2>
           <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li><strong>User Control:</strong> You can view, edit, or delete your Health Profile data at any time directly within the App settings.</li>
-            <li><strong>App Uninstallation:</strong> Uninstalling the App will result in the deletion of all locally stored data, including your Health Profile and Favorites.</li>
+            <li><strong>User Control:</strong> You can view, edit, or delete your Health Profile data and Reminders at any time directly within the App settings.</li>
+            <li><strong>App Uninstallation:</strong> Because we do not store your personal data on remote servers, uninstalling the App or clearing the App's data will result in the immediate and permanent deletion of all locally stored data, including your Health Profile, Favorites, Workout History, and Reminders.</li>
           </ul>
         </section>
 
         <section>
           <h2>5. Children’s Privacy</h2>
-          <p>RecipeWallah does not knowingly collect personal information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us.</p>
+          <p>RecipeWallah does not knowingly collect personal information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so we can guide you on deleting the local app data.</p>
         </section>
 
         <section>
