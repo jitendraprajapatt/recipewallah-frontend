@@ -496,9 +496,6 @@ function Navbar({ navigate, pathname, releaseData, isLoading }) {
         </nav>
 
         <div className="nav-actions">
-          <a href="https://www.instagram.com/recipewalllah/" target="_blank" rel="noreferrer" className="nav-social-icon" title="Follow on Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="insta-svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
           {releaseData?.directDownloadUrl ? (
             <a className="nav-download-btn" href={releaseData.directDownloadUrl} target="_blank" rel="noreferrer">
               Download APK
